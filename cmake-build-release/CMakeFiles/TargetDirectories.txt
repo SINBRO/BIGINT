@@ -1,0 +1,3 @@
+/home/platinum_dog/cpp-course/bigint/cmake-build-release/CMakeFiles/rebuild_cache.dir
+/home/platinum_dog/cpp-course/bigint/cmake-build-release/CMakeFiles/edit_cache.dir
+/home/platinum_dog/cpp-course/bigint/cmake-build-release/CMakeFiles/big_integer_testing.dir
