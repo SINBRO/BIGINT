@@ -14,7 +14,7 @@ big_integer::big_integer(big_integer const &other) = default;
 
 big_integer::big_integer(int32_t a)
         : negative(a < 0),
-          data{(uint32_t) abs(a)} {
+          data{a < 0 ? -(uint32_t) a : (uint32_t) a} {
 }
 
 big_integer::big_integer(std::string const &str) {
@@ -187,7 +187,7 @@ big_integer &big_integer::operator-=(big_integer const &rhs) {
 
 big_integer &big_integer::operator*=(int32_t rhs) {
     negative ^= rhs < 0;
-    *this *= (uint32_t) abs(rhs);
+    *this *= rhs < 0 ? - (uint32_t) rhs : (uint32_t) rhs;
     return *this;
 }
 
@@ -198,6 +198,7 @@ big_integer &big_integer::operator*=(uint32_t rhs) {
     data.push_back(0);
     std::vector<uint32_t> data_copy = data;
     data = {0};
+
     for (uint32_t j = 0; j < data_copy.size(); ++j) {
         data.push_back(0);
     }
@@ -644,7 +645,7 @@ bool operator==(big_integer const &a, uint32_t b) {
 }
 
 bool operator==(big_integer const &a, int32_t b) {
-    return a.data.size() == 1 && a.negative == (b < 0) && a.data[0] == (uint32_t) abs(b);
+    return a.data.size() == 1 && a.negative == (b < 0) && a.data[0] == (b < 0 ? -(uint32_t) b : (uint32_t) b);
 }
 
 bool operator!=(big_integer const &a, int32_t b) {
