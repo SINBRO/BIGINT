@@ -21,14 +21,15 @@ big_integer::big_integer(std::string const &str) {
     *this = big_integer();
     uint32_t pos = 0;
     if (str[0] == '-') {
-        if (str != "-0") {
-            negative = true;
-        }
+        negative = true;
         ++pos;
     }
     for (; pos < str.size(); ++pos) {
         *this *= 10;
         add_u_int_to_abs((uint32_t) (str[pos] - '0'));
+    }
+    if (data.size() == 1 && data[0] == 0) {
+        negative = false;
     }
 }
 
